@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     entry : './src/index.js',
     output: {
-        path: path.resolve(__dirname, '../build/admin'),
+        path: path.resolve(__dirname, '../build/admin359'),
         filename: 'app.js'
     },
     module: {
@@ -19,7 +19,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['css-loader', 'style-loader']
+                use: ['style-loader', 'css-loader']
             }
         ]
     },
@@ -27,7 +27,9 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './src/index.html',
-            publicPath: '/admin'
+            publicPath: '/admin359',
+            favicon: './src/favicon.png',
+            cache: false
         })
     ]
 }
