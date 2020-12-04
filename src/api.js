@@ -13,6 +13,7 @@ class AdminApi {
         this.socket.on('tok', this.tok.bind(this))
         this.socket.on('auth.user', this.authUser.bind(this))
         this.socket.on('auth.logout', this.authLogout.bind(this))
+        this.socket.on('auth.msg', this.authMsg.bind(this))
     }
 
     tok () {
@@ -34,6 +35,11 @@ class AdminApi {
                 message: reason
             })
         }
+    }
+
+    authMsg (msg) {
+        if (typeof msg === 'string') msg = {message: msg}
+        notification.error(msg)
     }
 }
 

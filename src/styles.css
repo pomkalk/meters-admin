@@ -17,3 +17,28 @@
     align-items: center;
     flex-direction: column;
 }
+
+.navbar {
+    height: 48px;
+    border-bottom: 1px solid rgba(0,0,0, 0.1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .container {
+    max-width: 960px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .container .logo {
+    width: 280px;
+}
+
+.navbar .container .title {
+    flex: 1
+}
+
