@@ -1,17 +1,9 @@
 import { useSelector } from "react-redux"
-
-class User {
-    constructor (user) {
-        this.user = user
-    }
-}
+import User from '../lib/User'
 
 const useUser = () => {
     const user = useSelector(state=>state.auth.user)
-    if (user) {
-        return new User(user)
-    }
-    return null
+    return user
 }
 
 export default useUser

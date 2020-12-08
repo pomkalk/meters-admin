@@ -7,7 +7,6 @@ import useUser from "./useUser"
 const useAuth = () => {
     const socket = useSocket()
     const user = useUser()
-    const dispatch = useDispatch()
     const [state, setState] = useState({
         pending: false,
         error: null
@@ -30,7 +29,7 @@ const useAuth = () => {
     }
 
     const logout = () => {
-        dispatch(setUser(null))
+        socket.emit('auth.logout')
     }
 
     return {

@@ -32,6 +32,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+    gap: 40px;
 }
 
 .navbar .container .logo {
@@ -42,3 +43,39 @@
     flex: 1
 }
 
+.main-container {
+    margin-top: 28px;
+    max-width: 960px;
+    width: 100%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 40px;
+}
+
+.main-container .menu {
+    width: 280px;
+}
+
+.main-container .content {
+    flex: 1;
+}
+
+
+
+.fade-enter{
+    opacity: 0;
+ }
+ .fade-exit{
+    opacity: 1;
+ }
+ .fade-enter-active{
+    opacity: 1;
+ }
+ .fade-exit-active{
+    opacity: 0;
+ }
+ .fade-enter-active,
+ .fade-exit-active{
+    transition: opacity 500ms;
+ }

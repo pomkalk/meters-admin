@@ -1,7 +1,8 @@
 import { SET_TITLE } from "./actions"
 
 const init = {
-    title: 'Some title'
+    title: 'Some title',
+
 }
 
 const reducer = (state = init, action) => {
