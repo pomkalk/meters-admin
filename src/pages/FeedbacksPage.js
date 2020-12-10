@@ -1,9 +1,9 @@
 import React from 'react'
-import useTitle from '../hooks/useTitle'
+import { useTitle } from '../hooks'
 
-const NotificationsPage = () => {
+const FeedbacksPage = () => {
     const [title] = useTitle('Отзывы')
-    return 'NotificationsPage'
+    return 'FeedbacksPage'
 }
 
-export default NotificationsPage
+export default FeedbacksPage

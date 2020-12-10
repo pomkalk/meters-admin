@@ -7,7 +7,7 @@ const init = {
 
 const reducer = (state = init, action) => {
     switch (action.type) {
-        case SET_USER: return {...state, user: new User(action.user)}
+        case SET_USER: return {...state, user: User.create(action.user)}
         default: return state
     }
 }

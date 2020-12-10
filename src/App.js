@@ -1,23 +1,24 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
 import { Link, Redirect, Route, Switch } from 'react-router-dom';
-import useConnected from './hooks/useConnected';
-import useUser from "./hooks/useUser"
-import LoginPage from './pages/LoginPage'
-import HomePage from './pages/HomePage'
+import { useConnected, useUser } from './hooks';
+const LoginPage = React.lazy(() => import('./pages/LoginPage'))
+const HomePage = React.lazy(() => import('./pages/HomePage'))
+import Preloader from './components/Preloader';
 
 
 const App = () => {
     const user = useUser()
     const connected = useConnected()
-    return (connected && <Switch>
-        <Route path="/login">
-            <LoginPage />
-        </Route>
-        <Route path="/" exact={false}>
-            { user ? <HomePage /> : <Redirect to="/login" /> }
-        </Route>
-    </Switch>)
+    return (connected && <Preloader>
+        <Switch>
+            <Route path="/login">
+                <LoginPage />
+            </Route>
+            <Route path="/" exact={false}>
+                { user ? <HomePage /> : <Redirect to="/login" /> }
+            </Route>
+        </Switch>
+    </Preloader>)
 }
 
 export default App

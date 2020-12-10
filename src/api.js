@@ -1,5 +1,6 @@
 import { message, notification } from 'antd'
 import { setUser } from './store/auth/actions'
+import { setConfigData, setConfigPermissions, setConfigUsers } from './store/settings/actions'
 
 class AdminApi {
     constructor (socket, store) {
@@ -14,6 +15,27 @@ class AdminApi {
         this.socket.on('auth.user', this.authUser.bind(this))
         this.socket.on('auth.logout', this.authLogout.bind(this))
         this.socket.on('auth.msg', this.authMsg.bind(this))
+        this.socket.on('config.data', this.configData.bind(this))
+        this.socket.on('users.data', this.usersData.bind(this))
+        this.socket.on('config.permissions', this.configPermissions.bind(this))
+        this.socket.on('msg', this.showMsg.bind(this))
+    }
+
+    configPermissions (data) {
+        console.log(data)
+        this.store.dispatch(setConfigPermissions(data))
+    }
+
+    showMsg (data) {
+        notification[data.type](data)
+    }
+
+    configData (data) {
+        this.store.dispatch(setConfigData(data))
+    }
+
+    usersData (data) {
+        this.store.dispatch(setConfigUsers(data))
     }
 
     tok () {

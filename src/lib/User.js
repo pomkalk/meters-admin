@@ -1,32 +1,30 @@
 class User {
     constructor (user) {
-        this.user = user
-        this._parse()
+        this._user = user
     }
 
-    _parse () {
-        // if (this.isRoot()) return
-        this._permissions = [...this.user.permissions.matchAll(/\[(.+?)\]/gm)].reduce((t, v) => {
-            let sp = v[1].split('.')
-            let acc = sp[1].split('')
-            return { ...t, [sp[0]]: acc}
-        }, {})
+    static create (user) {
+        if (user) return new User(user)
+        return null
     }
 
     _checkAccess (access) {
-        return Object.keys(this._permissions).includes(access)
+        return Object.keys(this._user.permissions).includes(access)
     }
 
     _checkPermission (access, perm) {
-        let a = this._permissions[access]
+        let a = this._user.permissions[access]
         if (!a) return false
         if (a[0] === '*') return true
-        return perm.every(x=>a.includes[x])
+        return perm.every(x=>{
+            return a.includes(x)
+        })
     }
 
     can (access) {
-        // if (this.isRoot()) return true
-        console.log('bobob', access)
+        if (Array.isArray(access)) {
+            return access.some(x => this.can(x))
+        }
         if (access.length == 0) return new Error('Bad access query.')
         let a = access.split('.')
         if (a.length == 1) {
@@ -34,32 +32,13 @@ class User {
         } else {
             if (a[1].length == 0) return new Error('Bad permission query.')
             let s = a[1].split('')
-            return this._checkPermission(a[0], a[1])
+            return this._checkPermission(a[0], s)
         }
-    }
-
-    get id () {
-        return this.user.id
-    }
-
-    get name () {
-        return this.user.name
-    }
-
-    get username () {
-        return this.user.username
-    }
-
-    get isRoot() {
-        return this.user.root ? true : false
-    }
-
-    can (access) {
-        
+        return false
     }
 
     getName () {
-        return this.name
+        return this._user.name
     }
 }
 

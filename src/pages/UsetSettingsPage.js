@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import useTitle from '../hooks/useTitle'
+import { useTitle, useSocket } from '../hooks'
 import { Card, Form, Input, Button, message } from 'antd'
-import useSocket from '../hooks/useSocket'
 
 
 const UserSettingsPage = () => {

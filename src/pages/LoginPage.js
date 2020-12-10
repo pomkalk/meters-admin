@@ -2,8 +2,8 @@ import React from 'react'
 import { Form, Input, Button, Alert } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { Redirect } from 'react-router-dom';
-import useSocket from '../hooks/useSocket';
-import useAuth from '../hooks/useAuth';
+import { useSocket, useAuth } from '../hooks';
+
 
 const layout = {
     labelCol: {

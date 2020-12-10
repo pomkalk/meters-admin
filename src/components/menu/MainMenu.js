@@ -1,11 +1,11 @@
 import React from 'react'
 import { Modal, Menu } from 'antd'
-import { CommentOutlined, DashboardOutlined, DatabaseOutlined, DesktopOutlined, HddOutlined, LoginOutlined, NotificationOutlined, SettingOutlined } from '@ant-design/icons'
 import { useLocation, matchPath, Link } from 'react-router-dom'
+import { LoginOutlined } from '@ant-design/icons'
 import useAuth from '../../hooks/useAuth'
 
-const MainMenu = () => {
-    const { user, logout } = useAuth()
+const MainMenu = ({menuItems}) => {
+    const { logout } = useAuth()
     const { pathname } = useLocation()
 
     const confirm = () => {
@@ -19,17 +19,7 @@ const MainMenu = () => {
         })
     }
 
-    const menuItems = [
-        {key: 'dashboard', title: 'Dashboard', access: '', icon: <DashboardOutlined />},
-        {key: 'meters', title: 'Счетчики', access: '', icon: <HddOutlined />},
-        {key: 'database', title: 'База данных', access: '', icon: <DatabaseOutlined />},
-        {key: 'news', title: 'Новости', access: '', icon: <DesktopOutlined />},
-        {key: 'notifications', title: 'Уведомления', access: '', icon: <NotificationOutlined />},
-        {key: 'feedbacks', title: 'Отзывы', access: '', icon: <CommentOutlined />},
-        {key: 'settings', title: 'Настройки', access: '', icon: <SettingOutlined />},
-    ].reduce((t, v) => {
-        return [...t, v]
-    }, [])
+
 
     const selected = menuItems.find(x => {
         return matchPath(pathname, {

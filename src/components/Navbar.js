@@ -6,13 +6,13 @@ import UserMenu from './Navbar/UserMenu'
 const Navbar = () => {
     return (<div className="navbar">
         <div className="container">
-            <div className="logo">
+            <div className="logo" style={{marginLeft: '12px'}}>
                 <Logo showTitle={true}/>
             </div>
             <div className="title">
                 <NavbarTitle />
             </div>
-            <div className="user">
+            <div className="user" style={{marginRight: '12px'}}>
                 <UserMenu />
             </div>
         </div>
