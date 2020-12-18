@@ -6,8 +6,8 @@ const useSubscribe = (event, callback) => {
 
     const action = (e) => {
         if (callback) {
-            if (e === event) {
-                callback(socket)
+            if (e.event === event) {
+                callback(socket, e.data)
             }
         }
     }
