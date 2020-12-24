@@ -6,6 +6,7 @@ import { Table, Checkbox, Space, Dropdown, Tag, Menu, Modal, message, Tooltip } 
 import { ParseDate } from '../../lib/ParseDate'
 import UploadPeriodDialog from '../../components/database/UploadPeriodDialog'
 import { MenuOutlined, DeleteOutlined, DownloadOutlined, RollbackOutlined } from '@ant-design/icons'
+import Can from '../Can'
 
 const PeriodsTable = () => {
     const user = useUser()
@@ -116,10 +117,12 @@ const PeriodsTable = () => {
 
                 }
 
+                let showRemoveButton = record.deletable && user.can('import.d')
+
                 const menu = (<Menu>
                     <Menu.Item><a onClick={onDownload}><DownloadOutlined /> Скачать</a></Menu.Item>
                     {record.deleted_at&&<Menu.Item><a onClick={onMove}><RollbackOutlined /> Переместить показания</a></Menu.Item>}
-                    {record.deletable&&<Menu.Item><a onClick={onRemove}><DeleteOutlined /> Удалить</a></Menu.Item>}
+                    {showRemoveButton&&<Menu.Item><a onClick={onRemove}><DeleteOutlined /> Удалить</a></Menu.Item>}
                 </Menu>)
                 return (<Dropdown overlay={menu} trigger={['click']}>
                     <a><MenuOutlined /></a>

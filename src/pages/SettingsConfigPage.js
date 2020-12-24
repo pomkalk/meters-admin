@@ -46,6 +46,7 @@ const SettingsConfigPage = () => {
             case 'meters_period': return 'Период доступа к сайту'
             case 'meters_msg': return 'Сообщение вне периода доступа'
             case 'meters_block': return 'Сообщение о блокировки счетчика'
+            case 'current': return 'Текущий активный период'
         }
     }
 
@@ -60,6 +61,7 @@ const SettingsConfigPage = () => {
             case 'meters_period': return <Param name={record.key} value={record.valt} updateValue={updateValue} />
             case 'meters_msg': return <Param name={record.key} value={record.valt} updateValue={updateValue} />
             case 'meters_block': return <Param name={record.key} value={record.valt} updateValue={updateValue} />
+            case 'current': return record.vali
         }
     }
 

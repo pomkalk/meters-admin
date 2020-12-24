@@ -19,7 +19,7 @@
 }
 
 .navbar {
-    flex: 0 0 48px;    
+    flex: 0 0 48px;
     border-bottom: 1px solid rgba(0,0,0, 0.1);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     display: flex;

@@ -2,6 +2,8 @@ import { message, notification } from 'antd'
 import { setUser } from './store/auth/actions'
 import { setConfigData, setConfigPermissions, setConfigUsers } from './store/settings/actions'
 import { setDbPeriods, clearDbPeriods, setDbStatus, setDbImportConfi } from './store/database/actions'
+import { setFeedsCount } from './store/page/actions'
+import { setFbData, setFbMessage } from './store/feedbacks/actions'
 class AdminApi {
     constructor (socket, store) {
         this.socket = socket
@@ -28,6 +30,25 @@ class AdminApi {
         //MESSAGES
         this.socket.on('msg', this.showMsg.bind(this))
         this.socket.on('errmsg', this.showErrMsg.bind(this))
+
+        //feedbacks
+        this.socket.on('feedbacks.count', this.feedbacksCount.bind(this))
+        this.socket.on('feedbacks.data', this.feedbacksData.bind(this))
+        this.socket.on('feedbacks.message', this.feedbacksMessage.bind(this))
+    }
+
+    feedbacksMessage (data) {
+        console.log(data)
+        this.store.dispatch(setFbMessage(data))
+    }
+
+    feedbacksData (data) {
+        this.store.dispatch(setFbData(data))
+    }
+
+    feedbacksCount (count) {
+        console.log('fb', count)
+        this.store.dispatch(setFeedsCount(count))
     }
 
     databaseConfig (config) {

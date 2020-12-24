@@ -5,6 +5,7 @@ import pageReducer from './page/reducer'
 import settingsReducer from './settings/reducer'
 import databaseReducer  from './database/reducer'
 import dashboardReducer from './dashboard/reducer'
+import feedbacksReducer from './feedbacks/reducer'
 
 const reducer = combineReducers({
     connection: connectionReducer,
@@ -12,7 +13,8 @@ const reducer = combineReducers({
     page: pageReducer,
     settings: settingsReducer,
     database: databaseReducer,
-    dashboard: dashboardReducer
+    dashboard: dashboardReducer,
+    feedbacks: feedbacksReducer
 })
 
 export default reducer
