@@ -10,7 +10,7 @@ import 'antd/dist/antd.css'
 import './styles.css'
 import AdminApi from './api'
 
-const socket = io('http://localhost:3000', {path: '/admin'})
+const socket = io('', {path: '/admin'})
 
 socket.once('connect', () => {
     store.dispatch(setSocket(socket))
