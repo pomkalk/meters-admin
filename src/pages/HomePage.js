@@ -6,6 +6,7 @@ import { routing } from '../routing'
 import { CommentOutlined, DashboardOutlined, DatabaseOutlined, DesktopOutlined, HddOutlined, NotificationOutlined, SettingOutlined } from '@ant-design/icons'
 import { useUser } from '../hooks'
 import Preloader from '../components/Preloader'
+import NewsAddPage from './NewsAddPage'
 const UserSettingsPage = React.lazy(() => import('./UsetSettingsPage'))
 
 const HomePage = () => {
@@ -46,6 +47,7 @@ const HomePage = () => {
                         <Route path="/user/settings" exact={true}>
                             <UserSettingsPage />
                         </Route>
+                        <Route path="/news/add" component={NewsAddPage}/>
                         { routing.map(x => {
                             return <Route key={x.path} path={`${url}${x.path}`} exact={x.exact}>
                                 { x.component }

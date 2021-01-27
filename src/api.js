@@ -4,6 +4,7 @@ import { setConfigData, setConfigPermissions, setConfigUsers } from './store/set
 import { setDbPeriods, clearDbPeriods, setDbStatus, setDbImportConfi } from './store/database/actions'
 import { setFeedsCount } from './store/page/actions'
 import { setFbData, setFbMessage } from './store/feedbacks/actions'
+import { setNewsData, setNewsMessage } from './store/news/actions'
 class AdminApi {
     constructor (socket, store) {
         this.socket = socket
@@ -35,6 +36,25 @@ class AdminApi {
         this.socket.on('feedbacks.count', this.feedbacksCount.bind(this))
         this.socket.on('feedbacks.data', this.feedbacksData.bind(this))
         this.socket.on('feedbacks.message', this.feedbacksMessage.bind(this))
+
+        //news
+        //this.socket.on('news.count', this.newsCount.bind(this))
+        this.socket.on('news.data', this.newsData.bind(this))
+        this.socket.on('news.message', this.newsMessage.bind(this))
+    }
+
+    newsMessage (data) {
+        console.log(data)
+        this.store.dispatch(setNewsMessage(data))
+    }
+
+    newsData (data) {
+        this.store.dispatch(setNewsData(data))
+    }
+
+    newsCount (count) {
+        console.log('news', count)
+        this.store.dispatch(setFeedsCount(count))
     }
 
     feedbacksMessage (data) {
