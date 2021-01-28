@@ -1,5 +1,5 @@
 import { Badge, Button, Modal, Space, Spin, Table, Menu, Dropdown } from 'antd'
-import { DeleteOutlined, MenuOutlined } from '@ant-design/icons'
+import { DeleteOutlined, MenuOutlined, EditOutlined } from '@ant-design/icons'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -63,15 +63,21 @@ const NewsPage = () => {
                     return <a onClick={()=>openNews(rec.id)}>{text}</a>
                 }}/>
                 <Table.Column title="Автор" dataIndex="author" />
-                <Table.Column title="Дата" dataIndex="updated_at" render={(text)=>ParseDate(text)}/>
+                <Table.Column title="Дата" dataIndex="created_at" render={(text)=>ParseDate(text)}/>
                 <Table.Column title="" key="action" render={(text, rec) => {
+
+                    const onEdit = () => {
+                        socket.emit('news.edit.get', rec.id)
+                        history.push('/news/edit')
+                    }
 
                     const onRemove = () => {
                         socket.emit('news.delete', rec.id)
                     }
 
                     const menu = (<Menu>
-                        <Menu.Item><a onClick={onRemove}><DeleteOutlined /> Удалить</a></Menu.Item>
+                        <Menu.Item><a onClick={onEdit}><EditOutlined />Редактирова</a></Menu.Item>
+                        <Menu.Item><a onClick={onRemove}><DeleteOutlined />Удалить</a></Menu.Item>
                     </Menu>)
                     return (<Dropdown overlay={menu} trigger={['click']}>
                                 <a><MenuOutlined /></a>

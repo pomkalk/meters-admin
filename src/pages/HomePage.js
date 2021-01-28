@@ -7,6 +7,8 @@ import { CommentOutlined, DashboardOutlined, DatabaseOutlined, DesktopOutlined, 
 import { useUser } from '../hooks'
 import Preloader from '../components/Preloader'
 import NewsAddPage from './NewsAddPage'
+import NewsEditPage from './NewsEditPage'
+
 const UserSettingsPage = React.lazy(() => import('./UsetSettingsPage'))
 
 const HomePage = () => {
@@ -48,6 +50,7 @@ const HomePage = () => {
                             <UserSettingsPage />
                         </Route>
                         <Route path="/news/add" component={NewsAddPage}/>
+                        <Route path="/news/edit" component={NewsEditPage}/>
                         { routing.map(x => {
                             return <Route key={x.path} path={`${url}${x.path}`} exact={x.exact}>
                                 { x.component }
