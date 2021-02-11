@@ -1,11 +1,11 @@
-import { Badge, Button, Modal, Space, Spin, Table, Menu, Dropdown } from 'antd'
+import { Badge, Button, Modal, Space, Spin, Table, Menu, Dropdown, Popconfirm } from 'antd'
 import { DeleteOutlined, MenuOutlined, EditOutlined } from '@ant-design/icons'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useTitle, useSubscribe } from '../hooks'
 import { ParseDate } from '../lib/ParseDate'
-import { clearNewsData, setNewsMessage, updateNews } from '../store/news/actions'
+import { clearNewsData, sendNotification, setNewsMessage, updateNews } from '../store/news/actions'
 
 const NewsPage = () => {
     const [title] = useTitle('Новости')
@@ -40,6 +40,12 @@ const NewsPage = () => {
     const tableHeader = (
         <Space direction="horizontal">
             <Button onClick={()=>history.push('/news/add')}>Добавить новость</Button>
+            <Popconfirm title={`Отправить напоминание`} okText="Отправить" cancelText="Отмена" onConfirm={()=>dispatch(sendNotification({
+                title: 'ООО "УЕЗ ЖКУ г. Ленинска-Кузнецкого"',
+                body: 'Здравствуйте, не забудьте передать показания счетчиков. Передать показания вы можете в период с 08:00 17 числа по 23:59 25 числа каждого месяца.'
+            }))}>
+            <Button>Напомнить</Button>
+            </Popconfirm>
         </Space>
     )
 

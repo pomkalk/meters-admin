@@ -20,3 +20,10 @@ export const getEdit = (id) => (dispatch) => {
     const socket = state.connection.socket
     socket.emit('news.edit.get', id)
 }
+
+export const sendNotification = (data) => (dispatch, getState) => {
+    console.log(data)
+    const state = getState()
+    const socket = state.connection.socket
+    socket.emit('news.notification.send', data)
+}

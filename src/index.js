@@ -11,7 +11,6 @@ import './styles.css'
 import AdminApi from './api'
 
 const socket = io('', {path: '/admin'})
-
 socket.once('connect', () => {
     store.dispatch(setSocket(socket))
     const api = new AdminApi(socket, store)
