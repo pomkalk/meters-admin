@@ -3,7 +3,7 @@ import { setUser } from './store/auth/actions'
 import { setConfigData, setConfigPermissions, setConfigUsers } from './store/settings/actions'
 import { setDbPeriods, clearDbPeriods, setDbStatus, setDbImportConfi } from './store/database/actions'
 import { setFeedsCount } from './store/page/actions'
-import { setFbData, setFbMessage } from './store/feedbacks/actions'
+import { setFbData, setFbExtra, setFbMessage } from './store/feedbacks/actions'
 import { setNewsData, setNewsEdit, setNewsMessage } from './store/news/actions'
 class AdminApi {
     constructor (socket, store) {
@@ -36,12 +36,17 @@ class AdminApi {
         this.socket.on('feedbacks.count', this.feedbacksCount.bind(this))
         this.socket.on('feedbacks.data', this.feedbacksData.bind(this))
         this.socket.on('feedbacks.message', this.feedbacksMessage.bind(this))
+        this.socket.on('feedbacks.extra', this.feedbacksExtra.bind(this))
 
         //news
         //this.socket.on('news.count', this.newsCount.bind(this))
         this.socket.on('news.data', this.newsData.bind(this))
         this.socket.on('news.edit', this.newsEdit.bind(this))
         this.socket.on('news.message', this.newsMessage.bind(this))
+    }
+
+    feedbacksExtra (name, value) {
+        this.store.dispatch(setFbExtra(name, value))
     }
 
     newsMessage (data) {
@@ -63,7 +68,6 @@ class AdminApi {
     }
 
     feedbacksMessage (data) {
-        console.log(data)
         this.store.dispatch(setFbMessage(data))
     }
 
