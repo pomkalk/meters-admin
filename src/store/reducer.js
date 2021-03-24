@@ -7,6 +7,7 @@ import databaseReducer  from './database/reducer'
 import dashboardReducer from './dashboard/reducer'
 import feedbacksReducer from './feedbacks/reducer'
 import newsReducer from './news/reducer'
+import metersReducer from './meters/reducer'
 
 const reducer = combineReducers({
     connection: connectionReducer,
@@ -16,7 +17,8 @@ const reducer = combineReducers({
     database: databaseReducer,
     dashboard: dashboardReducer,
     feedbacks: feedbacksReducer,
-    news: newsReducer
+    news: newsReducer,
+    meters: metersReducer
 })
 
 export default reducer
